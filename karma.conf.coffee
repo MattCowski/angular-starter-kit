@@ -2,7 +2,7 @@ module.exports = (config) ->
   config.set
     autoWatch: true
     frameworks: ['jasmine']
-    browsers: ['PhantomJS']
+    browsers: ['Chrome']
     preprocessors: {
       '**/*.coffee': ['coffee'],
     }
