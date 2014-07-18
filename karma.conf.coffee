@@ -2,7 +2,7 @@ module.exports = (config) ->
   config.set
     autoWatch: true
     frameworks: ['jasmine']
-    browsers: ['Chrome']
+    browsers: ['PhantomJS']
     preprocessors: {
       '**/*.coffee': ['coffee'],
     }
@@ -22,6 +22,10 @@ module.exports = (config) ->
       "vendor/bower/angular-ui-router/release/angular-ui-router.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js"
+      "vendor/bower/firebase/firebase.js"
+      "vendor/bower/angularfire/angularfire.js"
+      "vendor/bower/firebase-simple-login/firebase-simple-login.js"
+      "vendor/bower/fireuser/FireUser.js"
       "app/js/app.coffee"
       "app/js/**/*.coffee"
       "spec/unit/**/*.coffee"
