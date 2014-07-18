@@ -1,0 +1,17 @@
+//- fuLogin(type='github')
+h1 Log In
+fuLoginForm
+h1 Log Out
+fuLogOut.btn.btn-default
+h1 Sign Up
+fusignupform
+h1 Status
+p.lead {{loginstatus}}
+
+h1 Regular Log In/Out
+span(ng-show="Auth.user")
+  | {{Auth.user.uid}}  |  
+  a(ng-click="Auth.$logout()") logout
+a(ng-click="Auth.$login('anonymous')", ng-hide="Auth.user") login
+
+pre {{Auth}}

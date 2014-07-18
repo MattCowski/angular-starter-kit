@@ -31,7 +31,7 @@ connect = require('gulp-connect')
 # PATH VARIABLES
 # =================================================
 config =
-  devServerPort: 9000 # If you change this, you must also change it in protractor-conf.js
+  devServerPort: 9001 # If you change this, you must also change it in protractor-conf.js
 
 paths =
   app:
@@ -50,6 +50,11 @@ paths =
       "vendor/bower/angular-ui-router/release/angular-ui-router.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js"
+      "vendor/bower/firebase/firebase.js"
+      "vendor/bower/angularfire/angularfire.js"
+      "vendor/bower/firebase-simple-login/firebase-simple-login.js"
+      "vendor/bower/fireuser/FireUser.js"
+
     ]
     styles: [] # Bootstrap and Font-Awesome are included using @import in main.scss
     fonts: "vendor/bower/font-awesome/fonts/*.*"
