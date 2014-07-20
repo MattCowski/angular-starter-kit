@@ -1,6 +1,15 @@
-# Angular Starter Kit
+# Angular Starter Kit*
 
 This is an opinionated starter template for crafting single-page web applications using Angular.js, Coffeescript, SCSS, Jade, Bootstrap, UI-Router, Font-Awesome and a few other carefully picked tools that help kick-start web app development. To compile your app, it uses [Gulp.js](http://gulpjs.com) and a number of pre-processors, plugins, and utilities.
+
+## *with Firebase
+- angularfire
+-- Posts on /posts demonstrate the awesome no-backend/no-db/DBaaS. (woo! no more mongoDB)
+- fireuser and custom-login
+-- Full user authentication via anon, email, or social network
+-- Re-routing if no auth
+- firebase hosting
+
 
 ## Getting Started
 
