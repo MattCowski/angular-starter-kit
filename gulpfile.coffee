@@ -47,6 +47,7 @@ paths =
       "vendor/bower/jquery/jquery.js"
       "vendor/bower/lodash/dist/lodash.js"
       "vendor/bower/angular/angular.js"
+      "vendor/bower/angular-mocks/angular-mocks.js"
       "vendor/bower/angular-ui-router/release/angular-ui-router.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js"
@@ -54,6 +55,7 @@ paths =
       "vendor/bower/angularfire/angularfire.js"
       "vendor/bower/firebase-simple-login/firebase-simple-login.js"
       "vendor/bower/fireuser/FireUser.js"
+      # "vendor/bower/angular-http-auth/src/http-auth-interceptor.js"
 
     ]
     styles: [] # Bootstrap and Font-Awesome are included using @import in main.scss
