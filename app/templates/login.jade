@@ -1,17 +1,26 @@
-//- fuLogin(type='github')
 h1 Log In
-fuLoginForm
-h1 Log Out
-fuLogOut.btn.btn-default
-h1 Sign Up
-fusignupform
-h1 Status
-p.lead {{loginstatus}}
+fuLogin(type='github').btn.btn-default Github
+  |  Github
+fuLogin(type='google').btn.btn-default.i.fa.fa-google-plus.fa-lg
+fuLogin(type='facebook').btn.btn-default
+fuLogin(type='twitter').btn.btn-default
+button.btn.btn-default.i.fa.fa-envelope.fa-lg(ng-click="emailLogin = !emailLogin")  Email
+button.btn.btn-default.i.fa.fa-user.fa-lg(ng-click="Auth.$login('anonymous')", ng-hide="Auth.user")  Anonymous
 
-h1 Regular Log In/Out
-span(ng-show="Auth.user")
-  | {{Auth.user.uid}}  |  
-  a(ng-click="Auth.$logout()") logout
-a(ng-click="Auth.$login('anonymous')", ng-hide="Auth.user") login
+.well(ng-show="emailLogin")
+  h3 Email login
+  fuLoginForm
+  hr
+  h3 ... or sign up
+  p (then log in above)
+  fusignupform
 
-pre {{Auth}}
+
+
+//- h1 Regular Log In/Out
+//- span(ng-show="Auth.user")
+//-   | {{Auth.user.uid}}  |  
+//-   a(ng-click="Auth.$logout()") logout
+//- a(ng-click="Auth.$login('anonymous')", ng-hide="Auth.user") login
+
+//- pre {{Auth}}
