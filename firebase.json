@@ -1,0 +1,9 @@
+{
+  "firebase": "angular-starter-kit",
+  "public": "generated/",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
