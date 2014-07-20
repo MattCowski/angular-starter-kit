@@ -64,18 +64,18 @@ app.config(($stateProvider, $urlRouterProvider) ->
         return $firebaseSimpleLogin ref
       controllerAs: 'Auth'
     })
+    .state('posts', {
+      url: "/posts",
+      templateUrl: "/templates/posts.html",
+      controller: ($firebase) ->
+        ref = new Firebase("https://angular-starter-kit.firebaseio.com/posts")
+        return $firebase ref
+      controllerAs: 'Posts'
+    })
     .state('profile', {
       url: "/profile",
       templateUrl: "/templates/profile.html",
       private:true
-    })
-    .state('foo', {
-      url: "/foo",
-      templateUrl: "/templates/testing-ui-route.html",
-      controller: ($firebase) ->
-        ref = new Firebase("https://angular-starter-kit.firebaseio.com/")
-        return $firebase ref
-      controllerAs: 'Foo'
     })
     .state('info.sample-code', {
       url: "/sample-code",
