@@ -44,17 +44,25 @@ app.config(($stateProvider, $urlRouterProvider) ->
     })
     .state('info.getting-started', {
       url: "/getting-started",
-      private: true
+      # private: true
       templateUrl: "/templates/getting-started.html"
     })
     .state('login', {
       url: "/login",
-      private: false
+      # private: false
       templateUrl: "/templates/login.html",
       controller: ($firebase, $firebaseSimpleLogin) ->
         ref = new Firebase("https://angular-starter-kit.firebaseio.com/")
         return $firebaseSimpleLogin ref
       controllerAs: 'Auth'
+    })
+    .state('foo', {
+      url: "/foo",
+      templateUrl: "/templates/testing-ui-route.html",
+      controller: ($firebase) ->
+        ref = new Firebase("https://angular-starter-kit.firebaseio.com/")
+        return ref
+      controllerAs: 'Foo'
     })
     .state('info.sample-code', {
       url: "/sample-code",
