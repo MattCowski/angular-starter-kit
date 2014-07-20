@@ -243,6 +243,8 @@ angular.module("angular-auth-demo", [
       main.show()
       login.slideUp()
       return
+    return
+
 
 
 angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap','firebase', 'fireUser', "angular-auth-demo"])
