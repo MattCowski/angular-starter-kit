@@ -203,7 +203,7 @@ angular.module("content", [])
 
 
 # /////////////login.js
-angular.module("login", ["http-auth-interceptor"])
+angular.module("login", ["http-auth-interceptor", 'fireUser', 'firebase'])
 .controller "LoginController", ($scope, $http, authService) ->
   $scope.submit = ->
     $http.post("auth/login").success ->
@@ -238,8 +238,14 @@ angular.module("angular-auth-demo", [
         main.hide()
         return
       return
+    scope.$on "fireuser:logout", ->
+      login.slideDown "slow", ->
+        main.hide()
+        return
+      return
 
-    scope.$on "event:auth-loginConfirmed", ->
+    # scope.$on "event:auth-loginConfirmed", ->
+    scope.$on "fireuser:login", ->
       main.show()
       login.slideUp()
       return
