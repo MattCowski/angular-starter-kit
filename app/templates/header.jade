@@ -31,8 +31,6 @@
 
         li(data-ui-sref-active="active")
           a(data-ui-sref='info.getting-started') Getting Started
-        li(data-ui-sref-active="active")
-          a(ui-sref='login') Log In
         li.dropdown
           a.dropdown-toggle(href='#', data-toggle='dropdown')
             | Vendor Documentation
@@ -67,7 +65,19 @@
         //     li
         //       a(href='#') One more separated link
       ul.nav.navbar-nav.navbar-right
+        li(data-ui-sref-active="active", ng-hide="data.userLoggedIn")
+          a(ui-sref='login') Log In
+
+        li(ng-show="data.userLoggedIn")
+          a Welcome, {{data.user || data.userInfo.email || data.userInfo.uid}}
+        li(ng-show="data.userLoggedIn")
+          a: fuLogOut
         li
           a(href='https://github.com/adamalbrecht/angular-starter-kit' target='_blank')
             i.fa.fa-github.fa-lg
-            |  Source on Github
+            //- i.fa.fa-google.fa-lg
+            //- i.fa.fa-envelope.fa-lg
+            //- i.fa.fa-user.fa-lg
+            //- i.fa.fa-twitter.fa-lg
+            //- i.fa.fa-facebook.fa-lg
+            |  code

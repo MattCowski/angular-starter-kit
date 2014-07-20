@@ -233,19 +233,22 @@ angular.module("angular-auth-demo", [
     login = elem.find("#login-holder")
     main = elem.find("#content")
     login.hide()
+    
     scope.$on "event:auth-loginRequired", ->
       login.slideDown "slow", ->
         main.hide()
         return
       return
-    scope.$on "fireuser:logout", ->
+    scope.$on "$firebaseSimpleLogin:logout", ->
+    # scope.$on "fireuser:logout", ->
       login.slideDown "slow", ->
         main.hide()
         return
       return
 
     # scope.$on "event:auth-loginConfirmed", ->
-    scope.$on "fireuser:login", ->
+    # scope.$on "fireuser:login", ->
+    scope.$on "$firebaseSimpleLogin:login", ->
       main.show()
       login.slideUp()
       return

@@ -52,8 +52,16 @@ app.config(($stateProvider, $urlRouterProvider) ->
       url: "/login",
       # private: false
       templateUrl: "/templates/login.html",
-      controller: ($firebase, $firebaseSimpleLogin) ->
+      controller: ($firebase, $firebaseSimpleLogin, $location, $state, $rootScope) ->
         ref = new Firebase("https://angular-starter-kit.firebaseio.com/")
+        $rootScope.$on "$firebaseSimpleLogin:login", ->
+          console.log "doing sync"
+          $state.go('home');
+          # $location.path '/'
+          # $scope.loginObj = Auth.loginObj
+          # if Auth.signedIn()
+          #   $location.path "/"
+
         return $firebaseSimpleLogin ref
       controllerAs: 'Auth'
     })
@@ -62,8 +70,8 @@ app.config(($stateProvider, $urlRouterProvider) ->
       templateUrl: "/templates/testing-ui-route.html",
       controller: ($firebase) ->
         ref = new Firebase("https://angular-starter-kit.firebaseio.com/")
-        return ref
-      # controllerAs: 'Foo'
+        return $firebase ref
+      controllerAs: 'Foo'
     })
     .state('info.sample-code', {
       url: "/sample-code",
