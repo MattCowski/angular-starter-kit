@@ -61,9 +61,13 @@ app.config(($stateProvider, $urlRouterProvider) ->
           # $scope.loginObj = Auth.loginObj
           # if Auth.signedIn()
           #   $location.path "/"
-
         return $firebaseSimpleLogin ref
       controllerAs: 'Auth'
+    })
+    .state('profile', {
+      url: "/profile",
+      templateUrl: "/templates/profile.html",
+      private:true
     })
     .state('foo', {
       url: "/foo",
