@@ -286,7 +286,7 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
       restrict: "E"
       controller: "newfireusersignupformCtrl"
       link: ($scope, element, attr, ctrl) ->
-        element.html "<form name=\"signupForm\" ng-submit=\"createUser()\">" + "<formgroup>" + "Email <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"email\" required/>" + "</formgroup>" + "<formgroup>" + "Password <input class=\"form-control\" type=\"text\" name=\"password\" ng-model=\"password\" required/>" + "</formgroup>" + "  <br />" + "  <button type=\"submit\" class=\"btn btn-primary pull-right\" value=\"creatUser\">Sign Up</button>" + "  <span class=\"error\" ng-show=\"error\">{{error}}</span>" + "</form>"
+        element.html "<form name=\"signupForm\" ng-submit=\"createUser()\">" + "<formgroup>" + "Email <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"email\" required/>" + "</formgroup>" + "<formgroup>" + "Password <input class=\"form-control\" type=\"password\" name=\"password\" ng-model=\"password\" required/>" + "</formgroup>" + "  <br />" + "  <button type=\"submit\" class=\"btn btn-primary pull-right\" value=\"creatUser\">Sign Up</button>" + "  <span class=\"error\" ng-show=\"error\">{{error}}</span>" + "</form>"
         $compile(element.contents()) $scope
         return
     )
