@@ -301,7 +301,11 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
       $fireUser.createUser(info).then (user) ->
         console.log user
       , (error) ->
-        console.log error, "Exists... now logging in now automatically"
-        $fireUser.login "password", info
+        console.log error
+        switch error.code
+          when 'EMAIL_TAKEN' 
+            console.log "Exists... now logging in now automatically"
+            $fireUser.login "password", info
+
       return
 ]
