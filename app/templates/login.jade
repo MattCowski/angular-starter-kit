@@ -8,12 +8,7 @@ button.btn.btn-default.i.fa.fa-envelope.fa-lg(ng-click="emailLogin = !emailLogin
 button.btn.btn-default.i.fa.fa-user.fa-lg(ng-click="Auth.$login('anonymous')", ng-hide="Auth.user")  Anonymous
 
 .well(ng-show="emailLogin")
-  h3 Email login
-  fuLoginForm
-  hr
-  h3 ... or sign up
-  p (then log in above)
-  fusignupform
+  newfusignupform
 
 
 

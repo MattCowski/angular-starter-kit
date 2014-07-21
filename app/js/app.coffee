@@ -163,6 +163,11 @@ angular.module("content-mocks", ["ngMockE2E"])
     authorized = false
     [200]
 
+  $httpBackend.whenPOST("data/public/process").respond (method, url, data) ->
+    [
+      401
+      "waiting and processing your data [" + data + "]."
+    ]
   $httpBackend.whenPOST("data/public").respond (method, url, data) ->
     [
       200
@@ -176,10 +181,21 @@ angular.module("content-mocks", ["ngMockE2E"])
     ] else [401])
 
   
+  # Mock out the call to '/service/hello'
+  $httpBackend.whenGET("service/hello").respond 200,
+    message: "world"
+  
+  # let all views through (the actual html views from the views folder should be loaded)
+  $httpBackend.whenGET(new RegExp("views/.*")).passThrough()
+  
+  # Respond with 404 for all other service calls
+  $httpBackend.whenGET(new RegExp("service/.*")).respond 404
+
   #otherwise
   $httpBackend.whenGET(/.*/).passThrough()
   return
 
+# .run ($httpBackend) ->
 
 # ///////////
 
@@ -188,8 +204,10 @@ angular.module("content", [])
   $scope.publicContent = []
   $scope.restrictedContent = []
   $scope.publicAction = ->
-    $http.post("data/public", $scope.publicData).success (response) ->
+    $http.get("service/hello").success (response) ->
       $scope.publicContent.push response
+    # $http.post("data/public/process", $scope.publicData).success (response) ->
+    #   $scope.publicContent.push response
 
   $scope.restrictedAction = ->
     $http.post("data/protected", $scope.restrictedData).success (response) ->      
@@ -233,22 +251,22 @@ angular.module("angular-auth-demo", [
     login = elem.find("#login-holder")
     main = elem.find("#content")
     login.hide()
-    
+
     scope.$on "event:auth-loginRequired", ->
       login.slideDown "slow", ->
         main.hide()
         return
       return
-    scope.$on "$firebaseSimpleLogin:logout", ->
-    # scope.$on "fireuser:logout", ->
-      login.slideDown "slow", ->
-        main.hide()
-        return
-      return
+    # scope.$on "$firebaseSimpleLogin:logout", ->
+    # # scope.$on "fireuser:logout", ->
+    #   login.slideDown "slow", ->
+    #     main.hide()
+    #     return
+    #   return
 
-    # scope.$on "event:auth-loginConfirmed", ->
+    scope.$on "event:auth-loginConfirmed", ->
     # scope.$on "fireuser:login", ->
-    scope.$on "$firebaseSimpleLogin:login", ->
+    # scope.$on "$firebaseSimpleLogin:login", ->
       main.show()
       login.slideUp()
       return
@@ -258,3 +276,32 @@ angular.module("angular-auth-demo", [
 
 angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap','firebase', 'fireUser', "angular-auth-demo"])
 
+  # hack for fireUser SignUp directive to login automatically if existing
+.directive "newfusignupform", [
+  "$compile"
+  "FireUserValues"
+  ($compile, FireUserValues) ->
+    return (
+      scope: {}
+      restrict: "E"
+      controller: "newfireusersignupformCtrl"
+      link: ($scope, element, attr, ctrl) ->
+        element.html "<form name=\"signupForm\" ng-submit=\"createUser()\">" + "<formgroup>" + "Email <input class=\"form-control\" type=\"email\" name=\"email\" ng-model=\"email\" required/>" + "</formgroup>" + "<formgroup>" + "Password <input class=\"form-control\" type=\"text\" name=\"password\" ng-model=\"password\" required/>" + "</formgroup>" + "  <br />" + "  <button type=\"submit\" class=\"btn btn-primary pull-right\" value=\"creatUser\">Sign Up</button>" + "  <span class=\"error\" ng-show=\"error\">{{error}}</span>" + "</form>"
+        $compile(element.contents()) $scope
+        return
+    )
+]
+
+.controller "newfireusersignupformCtrl", [
+  "$scope"
+  "$fireUser"
+  ($scope, $fireUser) ->
+    $scope.createUser = () ->
+      info = { email: $scope.email, password: $scope.password }
+      $fireUser.createUser(info).then (user) ->
+        console.log user
+      , (error) ->
+        console.log error, "Exists... now logging in now automatically"
+        $fireUser.login "password", info
+      return
+]
