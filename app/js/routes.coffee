@@ -68,8 +68,8 @@ app.config(($stateProvider, $urlRouterProvider) ->
       url: "/posts"
       private:true
       templateUrl: "/templates/posts.html",
-      controller: ($firebase) ->
-        ref = new Firebase("https://angular-starter-kit.firebaseio.com/posts/1")
+      controller: ($firebase, $rootScope) ->
+        ref = new Firebase("https://angular-starter-kit.firebaseio.com/users/"+$rootScope.data.userInfo.id+"/posts")
         return $firebase ref
       controllerAs: 'Posts'
     })
