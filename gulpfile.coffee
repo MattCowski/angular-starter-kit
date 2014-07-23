@@ -263,13 +263,14 @@ gulp.task 'server', ->
   connect.server({
     root: ['generated'],
     port: config.devServerPort,
-    livereload: true
+    livereload:
+      port: 1337
     middleware: (connect, o) ->
       [
         (->
           url = require('url')
           proxy = require('proxy-middleware')
-          options = url.parse('http://localhost:3000/')
+          options = url.parse('http://localhost:9000/')
           options.route = '/api' # requests to /api/* will be sent to the proxy
           proxy(options)
         )()

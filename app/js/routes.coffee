@@ -69,6 +69,11 @@ app.config(($stateProvider, $urlRouterProvider) ->
       private:true
       templateUrl: "/templates/posts.html",
       controller: ($firebase, $rootScope) ->
+    #     newEmail = 
+    #       from: ''
+    #       to: ''
+    #       subject: 'hi'
+    #       body: 'hey there'
         ref = new Firebase("https://angular-starter-kit.firebaseio.com/users/"+$rootScope.data.userInfo.id+"/posts")
         return $firebase ref
       controllerAs: 'Posts'
