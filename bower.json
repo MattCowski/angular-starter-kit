@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "~1.9.0",
     "lodash": "~2.4.1",
+    "ng-file-upload-shim": "~1.6.1",
     "angular": "~1.2.16",
     "twbs-bootstrap-sass": "~3.1.1",
     "font-awesome": "~4.0.3",
@@ -14,7 +15,8 @@
     "firebase": "~1.0.17",
     "firebase-simple-login": "~1.6.1",
     "angular-mocks": "~1.2.20",
-    "angular-http-auth": "~1.2.1"
+    "angular-http-auth": "~1.2.1",
+    "ng-file-upload": "~1.6.1"
   },
   "devDependencies": {
     "jasmine": "~2.0.0",

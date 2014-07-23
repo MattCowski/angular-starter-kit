@@ -5,6 +5,7 @@ pre {{Posts }}
 code validation on email
 
 form(ng-submit="Posts.$add(newForm)")
+  p.text-danger(ng-show='error') {{ error }}  
   fieldset.form-group
     //- select.form-control(ng-model='calc.newItem', ng-options='item.name for item in calc.cartItems', title='Stars', required='required')
     //-   option(value='value') canvas
@@ -14,10 +15,12 @@ form(ng-submit="Posts.$add(newForm)")
     input.form-control(ng-model='newForm.subject', type='text', placeholder='Subject', title='Subject', required='required')
   
   fieldset.form-group
-    input.form-control(ng-model='newForm.from', type='text', placeholder='your email', title='From', required='required')
+    input.form-control(ng-model='newForm.from', type='email', placeholder='your email', title='From', required='required')
   fieldset.form-group
     input.form-control(ng-model='newForm.to', type='text', placeholder='send to email', title='to', required='required')
   fieldset.form-group
     input.form-control(ng-model='newForm.body', type='textarea', placeholder='this is my msg', title='body', required='required')
   fieldset.form-group
-    input.btn.btn-primary.pull-right(type='submit', value='Add')        
+    input.btn.btn-primary.pull-right(type='submit', value='Add')    
+  code form is {{newForm.$valid}}
+

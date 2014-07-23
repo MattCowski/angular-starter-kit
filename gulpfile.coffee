@@ -46,7 +46,9 @@ paths =
     scripts: [
       "vendor/bower/jquery/jquery.js"
       "vendor/bower/lodash/dist/lodash.js"
+      "vendor/bower/ng-file-upload/angular-file-upload-shim.js"
       "vendor/bower/angular/angular.js"
+      "vendor/bower/ng-file-upload/angular-file-upload.js" # has to be immediately after angular.js !?!
       "vendor/bower/angular-mocks/angular-mocks.js"
       "vendor/bower/angular-ui-router/release/angular-ui-router.js"
       "vendor/bower/angular-bootstrap/ui-bootstrap.js"
@@ -270,7 +272,7 @@ gulp.task 'server', ->
         (->
           url = require('url')
           proxy = require('proxy-middleware')
-          options = url.parse('http://localhost:9000/')
+          options = url.parse('http://localhost:9000/api/')
           options.route = '/api' # requests to /api/* will be sent to the proxy
           proxy(options)
         )()

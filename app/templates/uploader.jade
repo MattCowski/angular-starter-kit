@@ -1,0 +1,31 @@
+pre {{uploader}}
+form
+  .form-group
+    label(for="uploader") File input
+    input(type='file', ng-file-select='uploader.add($files)', multiple='multiple')
+    //- input(type='file', ng-file-select='onFileSelect($files)')
+    p.help-block {{uploader.added}}
+  .form-group
+    label(for="url") or enter a url
+    .input-group
+      input.form-control(type="text", placeholder='http:// (url to image)', title='Url', ng-model="url")
+      span.input-group-btn
+        button.btn.btn-default(type="button", ng-click="uploader.addUrl(url)") 
+          span.glyphicon.glyphicon-upload 
+          |   Upload
+  //- .form-group
+  //-   label Uploads
+  //-   div(ng-repeat='upload in message.uploads')
+  //-     input.form-control(type='text', ng-model='upload.url', placeholder='Enter upload {{$index+1}} url')
+
+  //- #attachments(ng-repeat="upload in message.uploads")
+  //-   img(ng-src="{{upload.url}}")
+  //-   | Upload {{$index+1}}: {{upload.ok}}
+  //-   a(href='{{upload.url}}')   {{upload.filename}} - thumb - slider - original - convert
+    
+
+  div.well(ng-file-drop='uploader.add($files)', ng-file-drag-over-class='optional-css-class', ng-show='dropSupported') ... or drag and drop your files here
+  div(ng-file-drop-available='dropSupported=true', ng-show='!dropSupported') HTML5 Drop File is not supported!
+  //- a.btn.btn-danger(ng-click='upload.abort()') Cancel Upload
+  //- input(type='text', ng-model='myModelObj')
+

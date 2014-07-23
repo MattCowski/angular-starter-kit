@@ -64,6 +64,12 @@ app.config(($stateProvider, $urlRouterProvider) ->
         return $firebaseSimpleLogin ref
       controllerAs: 'Auth'
     })
+    .state('uploads', {
+      url: "/uploads"
+      private:true
+      templateUrl: "/templates/uploads.html",
+      controller: 'UploadCtrl'
+    })
     .state('posts', {
       url: "/posts"
       private:true

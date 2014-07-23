@@ -1,0 +1,60 @@
+
+p.lead {{loginstatus}}
+p
+  button.btn.btn-primary(ng-click='createItem()')
+    | Create a new Data Item
+ul
+  li(ng-repeat='item in data.user.items')
+    input(type='text', ng-model='item.name')
+    i.fa.fa-times(ng-click='remove(item)')
+pre {{uploads.all |json}}
+
+
+
+
+
+
+
+
+input.search-query(type='text', ng-model='search', placeholder='Search')
+table
+  thead
+    tr
+      th
+      th Name
+      th Description
+      th
+        a(href='#/new')  new
+          i.icon-plus-sign
+  tbody
+    tr(ng-repeat='upload in uploads.all | orderByPriority | filter:search | orderBy:\'name\'')
+      td
+        img.img-responsive.img-rounded(ng-src='{{upload.thumb || upload.pdfThumb || "loading"}}', ng-click="selectUpload(upload.$id)")
+
+      td {{upload[':original'] | limitTo:-10}}
+      //- td 
+      //-   a(href='{{upload.site}}', target='_blank') {{upload.name}}
+      //- td {{upload.description}}
+      td versions, sizes, cropped / conversions, measurements
+      td
+        a(href='#/edit/{{upload.$id}}')  edit
+          i.icon-pencil
+
+form(ng-submit="uploads.all.$add(newForm)")
+  p.text-danger(ng-show='error') {{ error }}  
+  fieldset.form-group
+    //- select.form-control(ng-model='calc.newItem', ng-options='item.name for item in calc.cartItems', title='Stars', required='required')
+    //-   option(value='value') canvas
+  //- fieldset.form-group
+  //-   textarea.form-control(ng-model='reviewCtrl.review.body', placeholder='Write a short review of the product...', title='Review', required='required')
+  
+  fieldset.form-group
+    input.form-control(ng-model='newForm.body', type='textarea', placeholder='this is my msg', title='body', required='required')
+  fieldset.form-group
+    input.btn.btn-primary.pull-right(type='submit', value='Add')    
+
+
+
+
+
+
