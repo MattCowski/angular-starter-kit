@@ -8,6 +8,7 @@ ul
     input(type='text', ng-model='item.name')
     i.fa.fa-times(ng-click='remove(item)')
 pre {{uploads.all |json}}
+pre {{foo.all|json}}
 
 
 
@@ -27,20 +28,23 @@ table
         a(href='#/new')  new
           i.icon-plus-sign
   tbody
-    tr(ng-repeat='upload in uploads.all | orderByPriority | filter:search | orderBy:\'name\'')
+    tr(ng-repeat='upload in foo.all | orderByPriority | filter:search | orderBy:\'name\'')
       td
         img.img-responsive.img-rounded(ng-src='{{upload.thumb || upload.pdfThumb || "loading"}}', ng-click="selectUpload(upload.$id)")
 
-      td {{upload[':original'] | limitTo:-10}}
+      //- link to original in _blank
+      td 
+        a(href="{{upload[':original']}}")  {{upload[':original'] | limitTo:-10}}
       //- td 
       //-   a(href='{{upload.site}}', target='_blank') {{upload.name}}
       //- td {{upload.description}}
-      td versions, sizes, cropped / conversions, measurements
-      td
-        a(href='#/edit/{{upload.$id}}')  edit
-          i.icon-pencil
+      //- versions, sizes, cropped / conversions, measurements
+      //- td
+      //-   a(href='#/edit/{{upload.$id}}')  edit
+      //-     i.icon-pencil
 
-form(ng-submit="uploads.all.$add(newForm)")
+//- # add a link
+form(ng-submit="foo.all.$add(newForm)")
   p.text-danger(ng-show='error') {{ error }}  
   fieldset.form-group
     //- select.form-control(ng-model='calc.newItem', ng-options='item.name for item in calc.cartItems', title='Stars', required='required')
@@ -49,9 +53,9 @@ form(ng-submit="uploads.all.$add(newForm)")
   //-   textarea.form-control(ng-model='reviewCtrl.review.body', placeholder='Write a short review of the product...', title='Review', required='required')
   
   fieldset.form-group
-    input.form-control(ng-model='newForm.body', type='textarea', placeholder='this is my msg', title='body', required='required')
+    input.form-control(ng-model="newForm.thumb", type='textarea', placeholder='this is my msg', title='body', required='required')
   fieldset.form-group
-    input.btn.btn-primary.pull-right(type='submit', value='Add')    
+    input.btn.btn-primary.pull-right(type='submit', value='Add image from url')    
 
 
 

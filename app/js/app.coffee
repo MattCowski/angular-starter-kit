@@ -318,6 +318,14 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
   uploads = $firebase(ref)
   files = []
   urls = []
+  $rootScope.$on "fireuser:data_loaded", ->
+    user = $rootScope.data.userInfo
+    
+    
+
+  # $rootScope.$on '', (e, user) ->
+  #   user = user
+  
     
   getUrls = () ->
     if urls.length
@@ -326,6 +334,8 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
       urls = []
 
   Upload = 
+    getCurrent: ->
+      $rootScope.data.userInfo
     all: uploads
     notify: (url) ->
       urls.push url
@@ -342,11 +352,13 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
     setProgress: (percentage) ->
       $rootScope.$broadcast 'uploadProgress', percentage
     create: (transloadit) ->
-      user = User.getCurrent()
-      transloadit.owner = user.username
+      user = Upload.getCurrent()
+      console.log "in create, user is "+user.id
+      transloadit.owner = user.id
       uploads.$add(transloadit).then (ref) ->
+
         uploadId = ref.name()
-        user.$child('uploads').$child(uploadId).$set uploadId
+        # user.$child('uploads').$child(uploadId).$set uploadId
         Upload.check uploadId
         # uploadId
 
@@ -364,7 +376,6 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
       console.log "percent: " + parseInt(100.0 * evt.loaded / evt.total)
 
     upload: (file, template_id, steps, uploadId) ->
-      console.log "ATTEMPTING SEND"
       $http.post("/api/transloadit?template_id=" + template_id, steps).success (response) ->
         paramsToTransloadit =
           url: 'http://api2.transloadit.com/assemblies'
@@ -424,6 +435,8 @@ angular.module("starter-app", ['starter-app.github', 'ui.router', 'ui.bootstrap'
 
 
 .controller "UploadCtrl", ($rootScope, $scope, $upload, $location, $timeout, $http, Upload, $log) ->
+  $scope.uploads = {}
+  $scope.foo = Upload
   # $rootScope.$on "theUser", ->
   #   $scope.user = $rootScope.currentUser
   #   populateUploads()
