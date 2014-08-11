@@ -75,7 +75,7 @@
           a(ui-sref='login') Log In
 
         li(ng-show="data.userLoggedIn")
-          a(ui-sref='profile') Welcome, {{data.user || data.userInfo.email || data.userInfo.uid}}
+          a(ui-sref='profile') Welcome, {{data.userInfo.email || data.userInfo.uid}}
         li(ng-show="data.userLoggedIn")
           a: fuLogOut
         li
