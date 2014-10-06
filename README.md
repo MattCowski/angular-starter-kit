@@ -1,4 +1,5 @@
 # Angular Starter Kit*
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/MattCowski/angular-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is an opinionated starter template for crafting single-page web applications using Angular.js, Coffeescript, SCSS, Jade, Bootstrap, UI-Router, Font-Awesome and a few other carefully picked tools that help kick-start web app development. To compile your app, it uses [Gulp.js](http://gulpjs.com) and a number of pre-processors, plugins, and utilities.
 
